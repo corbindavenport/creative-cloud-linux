@@ -11,7 +11,7 @@ A (free) Adobe ID is required to install additional applications. Most Adobe app
 ## How to use this script
 
 1. Download PlayOnLinux from your distribution's package manaer (e.g. Ubuntu Software Center) or from [the PlayOnLinux website](https://www.playonlinux.com/en/download.html).
-2. Save the install script to your computer.
+2. Save the [install script](https://raw.githubusercontent.com/corbindavenport/creative-cloud-linux/master/creativecloud.sh) to your computer.
 3. Open PlayOnLinux, go to Tools > Run a local script
 4. Select the install script you just downloaded
 
