@@ -19,9 +19,15 @@ After the setup process is finished, you can open Adobe Application Manager from
 
 ## Background info
 
-I made this script because getting Creative Cloud working in Wine is pretty difficult, thanks to multiple versions of the setup program being available from Adobe's website that vary in compatibility with Wine. I found that the Creative Cloud setup program from the Photoshop download page works best in Wine ([direct link](https://ccmdls.adobe.com/AdobeProducts/PHSP/18_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe)), especially when the OS is temporarily set to Windows XP. That's the version that this script uses, if you choose to let the script download the program for you.
+I made this script because getting Creative Cloud working in Wine is pretty difficult, thanks to multiple versions of the setup program being available from Adobe's website that vary in compatibility with Wine. I found that the Creative Cloud setup program from the Photoshop download page works best in Wine, especially when the OS is temporarily set to Windows XP.
 
-After Creative Cloud is done installing, the script reverts the OS version back to Windows 7, so newer Adobe apps (like Photoshop CC 2015) can be downloaded through Application Manager.
+Here's everything the script does, if you want to re-create this in normal Wine:
+
+* Creates a new Wine prefix and sets the OS to Windows XP
+* Installs atmlib, corefonts, FontsSmoothRGB, and gdiplus
+* Downloads and runs the the Creative Cloud setup program from the Photoshop download page ([direct link](https://ccmdls.adobe.com/AdobeProducts/PHSP/18_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe))
+* After Creative Cloud/Application Manager is done installing, set the OS back to Windows 7 so newer apps can be installed
+* Create a shortcut for PDapp.exe (Adobe Application Manager)
 
 ---------------------------------------
 
