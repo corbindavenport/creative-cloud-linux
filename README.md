@@ -6,7 +6,7 @@ This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creat
 
 A (free) Adobe ID is required to install additional applications. Most Adobe applications require [a paid subscription](https://www.adobe.com/creativecloud/plans.html).
 
-**NOTE:** Only Application Manager, Photoshop CC 2015, and Lightroom 5 have been extensively tested.
+**NOTE:** Only Application Manager, Photoshop CC 2015, and Lightroom 5 have been extensively tested. This method does not allow the installation of CC 2017 applications, only the earlier 2015 versions. I'm looking into a fix.
 
 ## How to use this script
 
