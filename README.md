@@ -27,7 +27,7 @@ Here's everything the script does, if you want to re-create this in normal Wine:
 * Installs atmlib, corefonts, FontsSmoothRGB, and gdiplus
 * Downloads and runs the the Creative Cloud setup program from the Photoshop download page ([direct link](https://ccmdls.adobe.com/AdobeProducts/PHSP/18_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe))
 * After Creative Cloud/Application Manager is done installing, set the OS back to Windows 7 so newer apps can be installed
-* Create a shortcut for PDapp.exe (Adobe Application Manager)
+* Creates a shortcut for PDapp.exe (Adobe Application Manager)
 
 ---------------------------------------
 
