@@ -45,7 +45,7 @@ POL_SetupWindow_InstallMethod "LOCAL,DOWNLOAD"
 if [ "$INSTALL_METHOD" = "LOCAL" ]
 then
     # The normal Creative Cloud setup requires Windows 7 or higher
-    #Set_OS "win7"
+    Set_OS "win7"
     POL_SetupWindow_browse "Please select the Creative Cloud install program." "$TITLE"
     POL_SetupWindow_wait "Installation in progress..." "$TITLE"
     INSTALLER="$APP_ANSWER"
