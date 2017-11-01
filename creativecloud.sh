@@ -45,7 +45,7 @@ POL_SetupWindow_InstallMethod "LOCAL,DOWNLOAD"
 if [ "$INSTALL_METHOD" = "LOCAL" ]
 then
     # The normal Creative Cloud setup requires Windows 7 or higher
-    Set_OS "win7"
+    #Set_OS "win7"
     POL_SetupWindow_browse "Please select the Creative Cloud install program." "$TITLE"
     POL_SetupWindow_wait "Installation in progress..." "$TITLE"
     INSTALLER="$APP_ANSWER"
@@ -59,7 +59,7 @@ then
 fi
   
 # Installation
-POL_SetupWindow_message "$(eval_gettext 'IMPORTANT: Once Adobe Application Application Manager is installed and you finish logging in, come back to this setup window and click Next. Some final adjustments have to be made by the script in order to run newer Adobe programs.')" "$TITLE"
+POL_SetupWindow_message "$(eval_gettext 'Once Adobe Application Application Manager is installed and you finish logging in, come back to this setup window and click Next. Some final adjustments have to be made by the script in order to run newer Adobe programs.\n\nIf the installer crashes or freezes at this step, check the Troubleshooting page: http://bit.ly/cctroubleshooting')" "$TITLE"
 POL_Wine_WaitBefore "$TITLE"
 POL_Wine "$INSTALLER"
 POL_Shortcut "PDapp.exe" "Adobe Application Manager"
