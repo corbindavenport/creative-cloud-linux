@@ -15,7 +15,7 @@ A (free) Adobe ID is required to install additional applications. Most Adobe app
 3. Open PlayOnLinux, go to Tools > Run a local script
 4. Select the install script you just downloaded
 
-After the setup process is finished, you can open Adobe Application Manager from PlayOnLinux to download and install the apps you need.
+After the setup process is finished, you can open Adobe Application Manager from PlayOnLinux to download and install the apps you need. If the installer crashes, see the [Troubleshooting page](https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting).
 
 ## Background info
 
