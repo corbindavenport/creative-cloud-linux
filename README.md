@@ -2,11 +2,11 @@
 
 This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html), designed to be used with [PlayOnLinux](https://www.playonlinux.com). This downloads and installs the Creative Cloud software from Adobe's website. Once setup is completed, you can use the Adobe Application Manager to download and install Photoshop, Dreamweaver, Illustrator, and other apps.
 
+**NOTE:** Only Application Manager, Photoshop CC 2015, and Lightroom 5 have been extensively tested. This method does not allow the installation of CC 2017 applications, only the earlier 2015 versions. Support for newer Adobe applications is currently [in development](https://github.com/corbindavenport/creative-cloud-linux/tree/dev).
+
 ![Adobe Application Manager](https://i.imgur.com/MSIIpdt.png)
 
 A (free) Adobe ID is required to install additional applications. Most Adobe applications require [a paid subscription](https://www.adobe.com/creativecloud/plans.html).
-
-**NOTE:** Only Application Manager, Photoshop CC 2015, and Lightroom 5 have been extensively tested. This method does not allow the installation of CC 2017 applications, only the earlier 2015 versions. I'm looking into a fix. If you run into warnings about video memory size, open PlayOnLinux and go to Configure > Display > Video memory size.
 
 ## How to use this script
 
