@@ -11,7 +11,7 @@
 [ "$PLAYONLINUX" = "" ] && exit 0
 source "$PLAYONLINUX/lib/sources"
 
-PREFIX="CreativeCloud"
+PREFIX="CreativeCloudDev"
 WINEVERSION="2.17-staging"
 TITLE="Adobe Creative Cloud"
 EDITOR="Adobe Systems Inc."
@@ -31,38 +31,51 @@ POL_SetupWindow_presentation "$TITLE" "$EDITOR" "$GAME_URL" "$AUTHOR" "$PREFIX"
 POL_Wine_SelectPrefix "$PREFIX"
 POL_Wine_PrefixCreate "$WINEVERSION"
 POL_System_TmpCreate "AppManagerTmp"
-Set_OS "winxp"
+Set_OS "win7"
 
 # Install dependencies
 POL_Call POL_Install_atmlib
 POL_Call POL_Install_corefonts
 POL_Call POL_Install_FontsSmoothRGB
-POL_Call POL_Install_gdiplus
+POL_Call POL_Install_wintrust
+POL_Call POL_Install_msasn1
+POL_Call POL_Install_vcrun2008
+# The 'POL_Install_winhttp' command seems to go to a dead link, this is a modifed version:
+POL_Download_Resource "https://web.archive.org/web/20061224003406/http://download.microsoft.com/download/5/0/c/50c42d0e-07a8-4a2b-befb-1a403bd0df96/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" "0c0f6e300800e49472e9b2e0890a09c1" "0c0f6e300800e49472e9b2e0890a09c1"
+   
+cd "$WINEPREFIX/drive_c/windows/temp"
+cabextract "$POL_USER_ROOT/ressources/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" -F WINHTTP.DLL
+if [ "$POL_ARCH" = "amd64" ]; then
+        cp -f WINHTTP.DLL ../syswow64/winhttp.dll
+else
+        cp -f WINHTTP.DLL ../system32/winhttp.dll
+fi
+POL_Wine_OverrideDLL "native, builtin" "winhttp"
+# End custom winhttp
+# The 'POL_Install_wininet' command seems to go to a dead link, this is a modifed version:
+POL_Download_Resource "https://web.archive.org/web/20061224003406/http://download.microsoft.com/download/5/0/c/50c42d0e-07a8-4a2b-befb-1a403bd0df96/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" "0c0f6e300800e49472e9b2e0890a09c1"
+cd "$WINEPREFIX/drive_c/windows/temp"
+cabextract "$POL_USER_ROOT/ressources/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" -F WININET.DLL
+if [ "$POL_ARCH" = "amd64" ]; then
+        cp -f WININET.DLL ../syswow64/wininet.dll
+else
+        cp -f WININET.DLL ../system32/wininet.dll
+fi
+POL_Wine_OverrideDLL "native, builtin" "wininet"
+# End custom inet
 
 # Get the installer
-POL_SetupWindow_message "$(eval_gettext 'On the next screen, you can choose between automatically downloading the Creative Cloud installer, or selecting it from your computer.\n\nIt is HIGHLY RECOMMENDED to let the script download the Creative Cloud installer for you, since the downloaded version has been verified to work.')" "$TITLE"
-POL_SetupWindow_InstallMethod "LOCAL,DOWNLOAD"
-if [ "$INSTALL_METHOD" = "LOCAL" ]
-then
-    # The normal Creative Cloud setup requires Windows 7 or higher
-    Set_OS "win7"
-    POL_SetupWindow_browse "Please select the Creative Cloud install program." "$TITLE"
-    POL_SetupWindow_wait "Installation in progress..." "$TITLE"
-    INSTALLER="$APP_ANSWER"
-elif [ "$INSTALL_METHOD" = "DOWNLOAD" ]
-then
-    cd "$POL_System_TmpDir"
-    # The Creative Cloud setup program from the Photoshop download link on Adobe's website only needs Windows XP, and seems to work better in Wine
-    POL_Download "https://ccmdls.adobe.com/AdobeProducts/PHSP/18_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe"
-    POL_SetupWindow_wait "Installation in progress..." "$TITLE"
-    INSTALLER="$POL_System_TmpDir/CreativeCloudSet-Up.exe"
-fi
+cd "$POL_System_TmpDir"
+POL_Download "https://ccmdls.adobe.com/AdobeProducts/KCCC/1/win32/CreativeCloudSet-Up.exe"
+POL_SetupWindow_wait "Installation in progress..." "$TITLE"
+INSTALLER="$POL_System_TmpDir/CreativeCloudSet-Up.exe"
   
 # Installation
-POL_SetupWindow_message "$(eval_gettext 'Once Adobe Application Application Manager is installed and you finish logging in, come back to this setup window and click Next. Some final adjustments have to be made by the script in order to run newer Adobe programs.\n\nIf the installer crashes or freezes at this step, check the Troubleshooting page: http://bit.ly/cctroubleshooting')" "$TITLE"
+POL_SetupWindow_message "$(eval_gettext 'Once Adobe Application Application Manager is installed and you finish logging in, come back to this setup window and click Next. Some final adjustments have to be made by the script in order to run newer Adobe programs.\n\nThe troubleshooting page will also open in your web browser, in case you run into problems.')" "$TITLE"
+POL_Browser "https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting"
 POL_Wine_WaitBefore "$TITLE"
 POL_Wine "$INSTALLER"
-POL_Shortcut "PDapp.exe" "Adobe Application Manager"
+POL_Shortcut "PDapp.exe" "[DEV] Adobe Application Manager"
 Set_OS "win7"
 POL_System_TmpDelete
 

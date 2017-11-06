@@ -1,33 +1,15 @@
-# Creative Cloud for PlayOnLinux
+This is the in-progress development version of the Creative Cloud Script, designed to allow newer CC apps (like Photoshop CC 2017) to run. This script can be installed alongside the one found in the master branch. **This dev version does not work right now.**
 
-This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html), designed to be used with [PlayOnLinux](https://www.playonlinux.com). This downloads and installs the Creative Cloud software from Adobe's website. Once setup is completed, you can use the Adobe Application Manager to download and install Photoshop, Dreamweaver, Illustrator, and other apps.
+Changes in this version:
 
-![Adobe Application Manager](https://i.imgur.com/MSIIpdt.png)
+* Set default OS to Windows 7
+* Added wintrust, msasn1, winhttp, wininet, and vcrun2008 packages from [POL function repository](https://www.playonlinux.com/repository/?cat=100) to fix some errors with the installer
+* Download the actual Creative Cloud installer program from Adobe, instead of an older Photoshop installer
+* Removed option to choose a local install .exe
 
-A (free) Adobe ID is required to install additional applications. Most Adobe applications require [a paid subscription](https://www.adobe.com/creativecloud/plans.html).
+The key to getting newer Adobe software working is to use the updated Creative Cloud desktop application. The stable version of this script installs the older 'Adobe Application Manager,' which only allows CC 2015 apps and older to be downloaded.
 
-**NOTE:** Only Application Manager, Photoshop CC 2015, and Lightroom 5 have been extensively tested. This method does not allow the installation of CC 2017 applications, only the earlier 2015 versions. I'm looking into a fix. If you run into warnings about video memory size, open PlayOnLinux and go to Configure > Display > Video memory size.
-
-## How to use this script
-
-1. Download PlayOnLinux from your distribution's package manager (e.g. Ubuntu Software Center) or from [the PlayOnLinux website](https://www.playonlinux.com/en/download.html)
-2. Save the [install script](https://raw.githubusercontent.com/corbindavenport/creative-cloud-linux/master/creativecloud.sh) to your computer
-3. Open PlayOnLinux, go to Tools > Run a local script
-4. Select the install script you just downloaded
-
-After the setup process is finished, you can open Adobe Application Manager from PlayOnLinux to download and install the apps you need. If the installer crashes, see the [Troubleshooting page](https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting).
-
-## Background info
-
-I made this script because getting Creative Cloud working in Wine is pretty difficult, thanks to multiple versions of the setup program being available from Adobe's website that vary in compatibility with Wine. I found that the Creative Cloud setup program from the Photoshop download page works best in Wine, especially when the OS is temporarily set to Windows XP.
-
-Here's everything the script does, if you want to re-create this in normal Wine:
-
-* Creates a new Wine prefix and sets the OS to Windows XP
-* Installs atmlib, corefonts, FontsSmoothRGB, and gdiplus
-* Downloads and runs the the Creative Cloud setup program from the Photoshop download page ([direct link](https://ccmdls.adobe.com/AdobeProducts/PHSP/18_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe))
-* After Creative Cloud/Application Manager is done installing, set the OS back to Windows 7 so newer apps can be installed
-* Creates a shortcut for PDapp.exe (Adobe Application Manager)
+Even with the current changes to the script, the Creative Cloud installer still fails every time, either at 3% with a Wine crash or at 5% with a download error.
 
 ---------------------------------------
 
