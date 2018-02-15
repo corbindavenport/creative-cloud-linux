@@ -12,7 +12,7 @@
 source "$PLAYONLINUX/lib/sources"
 
 PREFIX="CreativeCloudDev"
-WINEVERSION="2.17-staging"
+WINEVERSION="2.20-staging"
 TITLE="Adobe Creative Cloud"
 EDITOR="Adobe Systems Inc."
 GAME_URL="http://www.adobe.com"
@@ -34,39 +34,17 @@ POL_System_TmpCreate "AppManagerTmp"
 Set_OS "win7"
 
 # Install dependencies
-POL_Call POL_Install_atmlib
-POL_Call POL_Install_corefonts
-POL_Call POL_Install_FontsSmoothRGB
-POL_Call POL_Install_wintrust
-POL_Call POL_Install_msasn1
-POL_Call POL_Install_vcrun2008
-# The 'POL_Install_winhttp' command seems to go to a dead link, this is a modifed version:
-POL_Download_Resource "https://web.archive.org/web/20061224003406/http://download.microsoft.com/download/5/0/c/50c42d0e-07a8-4a2b-befb-1a403bd0df96/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" "0c0f6e300800e49472e9b2e0890a09c1" "0c0f6e300800e49472e9b2e0890a09c1"
-   
-cd "$WINEPREFIX/drive_c/windows/temp"
-cabextract "$POL_USER_ROOT/ressources/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" -F WINHTTP.DLL
-if [ "$POL_ARCH" = "amd64" ]; then
-        cp -f WINHTTP.DLL ../syswow64/winhttp.dll
-else
-        cp -f WINHTTP.DLL ../system32/winhttp.dll
-fi
-POL_Wine_OverrideDLL "native, builtin" "winhttp"
-# End custom winhttp
-# The 'POL_Install_wininet' command seems to go to a dead link, this is a modifed version:
-POL_Download_Resource "https://web.archive.org/web/20061224003406/http://download.microsoft.com/download/5/0/c/50c42d0e-07a8-4a2b-befb-1a403bd0df96/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" "0c0f6e300800e49472e9b2e0890a09c1"
-cd "$WINEPREFIX/drive_c/windows/temp"
-cabextract "$POL_USER_ROOT/ressources/IE5.01sp4-KB871260-Windows2000sp4-x86-ENU.exe" -F WININET.DLL
-if [ "$POL_ARCH" = "amd64" ]; then
-        cp -f WININET.DLL ../syswow64/wininet.dll
-else
-        cp -f WININET.DLL ../system32/wininet.dll
-fi
-POL_Wine_OverrideDLL "native, builtin" "wininet"
-# End custom inet
+POL_Call POL_Install_msxml3
+
+cd "$POL_System_TmpDir"
+# Use winetricks, since the POL_corefonts version does not work with the installer
+POL_Download_Resource  "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
+chmod +x winetricks 
+./winetricks atmlib corefonts fontsmooth=rgb
 
 # Get the installer
 cd "$POL_System_TmpDir"
-POL_Download "https://ccmdls.adobe.com/AdobeProducts/KCCC/1/win32/CreativeCloudSet-Up.exe"
+POL_Download "https://ccmdls.adobe.com/AdobeProducts/PHSP/19_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe"
 POL_SetupWindow_wait "Installation in progress..." "$TITLE"
 INSTALLER="$POL_System_TmpDir/CreativeCloudSet-Up.exe"
   
@@ -75,12 +53,12 @@ POL_SetupWindow_message "$(eval_gettext 'Once Adobe Application Application Mana
 POL_Browser "https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting"
 POL_Wine_WaitBefore "$TITLE"
 POL_Wine "$INSTALLER"
-POL_Shortcut "PDapp.exe" "[DEV] Adobe Application Manager"
+POL_Shortcut "Creative Cloud.exe" "[DEV] Adobe Application Manager"
 Set_OS "win7"
 POL_System_TmpDelete
 
 # All done
-POL_SetupWindow_message "$(eval_gettext 'The installation is now complete, you can now use Adobe Application Manager to download and install the applications you need.\n\nYou will need to close and re-open Application Manager to see newer apps, like CC 2015.\n\nAfter you download an app, you can add a PlayOnLinux shortcut for it by clicking Adobe Application Manager in the app list, clicking CONFIGURE, and clicking MAKE A NEW SHORTCUT FROM THIS VIRTUAL DRIVE. Then look for the app, like Photoshop.exe, and add it.')" "$TITLE"
-  
+POL_SetupWindow_message "$(eval_gettext 'The installation is now complete, you can now use Adobe Application Manager to download and install the applications you need.\n\nLoading the login screen or the Application List can take some time, just give it a minute.\n\nAfter you download an app, you can add a PlayOnLinux shortcut for it by clicking Adobe Application Manager in the app list, clicking CONFIGURE, and clicking MAKE A NEW SHORTCUT FROM THIS VIRTUAL DRIVE. Then look for the app, like Photoshop.exe, and add it.')" "$TITLE"
+ 
 POL_SetupWindow_Close
 exit 0
