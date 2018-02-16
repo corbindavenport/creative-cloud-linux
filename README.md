@@ -1,12 +1,12 @@
 # Creative Cloud for PlayOnLinux
 
-This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html), designed to be used with [PlayOnLinux](https://www.playonlinux.com). This downloads and installs the Creative Cloud software from Adobe's website. Once setup is completed, you can use the Adobe Application Manager to download and install Photoshop, Dreamweaver, Illustrator, and other apps.
+This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html), designed to be used with [PlayOnLinux](https://www.playonlinux.com). The script sets up the Adobe Creative Cloud desktop program, which can be used to install and update Photoshop, Lightroom, Dreamweaver, Illustrator, and other apps.
 
-![Adobe Application Manager](https://i.imgur.com/MSIIpdt.png)
+**NOTE:** Only Photoshop CC, Bridge CC, Lightroom 5, and the Creative Cloud manager have been extensively tested. The newest Lightroom CC app is not supported right now. File syncing currently [does not work](https://github.com/corbindavenport/creative-cloud-linux/issues/29).
 
-A (free) Adobe ID is required to install additional applications. Most Adobe applications require [a paid subscription](https://www.adobe.com/creativecloud/plans.html).
+![Photoshop CC Screenshot](https://i.imgur.com/0JUQYuR.png)
 
-**NOTE:** Only Application Manager, Photoshop CC 2015, and Lightroom 5 have been extensively tested.
+A (free) Adobe ID is required. Most Adobe applications require [a paid subscription](https://www.adobe.com/creativecloud/plans.html).
 
 ## How to use this script
 
@@ -15,19 +15,11 @@ A (free) Adobe ID is required to install additional applications. Most Adobe app
 3. Open PlayOnLinux, go to Tools > Run a local script
 4. Select the install script you just downloaded
 
-After the setup process is finished, you can open Adobe Application Manager from PlayOnLinux to download and install the apps you need.
+After the setup process is finished, you can open `Adobe Creative Cloud` from PlayOnLinux to download and install the apps you need. After you download an app, you can add a PlayOnLinux shortcut for it by clicking Adobe Application Manager in the app list, clicking `Configure`, and clicking `Make a new shortcut from this virtual drive`. Then look for the app you need, like Photoshop.exe, and add it.
 
-## Background info
+**Tip:** Tooltips in Photoshop might not disappear automatically. You can turn off tooltips completely by going to `Edit > Preferences > Tools` and un-checking the `Show tooltips` box.
 
-I made this script because getting Creative Cloud working in Wine is pretty difficult, thanks to multiple versions of the setup program being available from Adobe's website that vary in compatibility with Wine. I found that the Creative Cloud setup program from the Photoshop download page works best in Wine, especially when the OS is temporarily set to Windows XP.
-
-Here's everything the script does, if you want to re-create this in normal Wine:
-
-* Creates a new Wine prefix and sets the OS to Windows XP
-* Installs atmlib, corefonts, FontsSmoothRGB, and gdiplus
-* Downloads and runs the the Creative Cloud setup program from the Photoshop download page ([direct link](https://ccmdls.adobe.com/AdobeProducts/PHSP/18_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe))
-* After Creative Cloud/Application Manager is done installing, set the OS back to Windows 7 so newer apps can be installed
-* Create a shortcut for PDapp.exe (Adobe Application Manager)
+If the installer crashes, see the [Troubleshooting page](https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting). If you still have issues, try [the classic script](https://github.com/corbindavenport/creative-cloud-linux/tree/classic).
 
 ---------------------------------------
 
