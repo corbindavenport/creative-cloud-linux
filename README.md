@@ -19,7 +19,7 @@ After the setup process is finished, you can open `Adobe Creative Cloud` from Pl
 
 **Tip:** Tooltips in Photoshop might not disappear automatically. You can turn off tooltips completely by going to `Edit > Preferences > Tools` and un-checking the `Show tooltips` box.
 
-If the installer crashes, see the [Troubleshooting page](https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting).
+If the installer crashes, see the [Troubleshooting page](https://github.com/corbindavenport/creative-cloud-linux/wiki/Troubleshooting). If you still have issues, try [the classic script](https://github.com/corbindavenport/creative-cloud-linux/tree/classic).
 
 ---------------------------------------
 
