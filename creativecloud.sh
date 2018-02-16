@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Date : (02-15-2018)
 # Distribution used to test : Ubuntu 17.10 x64
 # Author : Corbin Davenport
