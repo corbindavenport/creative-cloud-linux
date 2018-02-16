@@ -46,7 +46,7 @@ chmod +x winetricks
 # Get the installer
 POL_SetupWindow_wait "Installation in progress..." "$TITLE"
 cd "$POL_System_TmpDir"
-POL_Download "https://ccmdls.adobe.com/AdobeProducts/PHSP/19_1_1/win32/AAMmetadataLS20/CreativeCloudSet-Up.exe"
+POL_Download "https://ccmdls.adobe.com/AdobeProducts/KCCC/1/win32/CreativeCloudSet-Up.exe"
 INSTALLER="$POL_System_TmpDir/CreativeCloudSet-Up.exe"
   
 # Run the installer
