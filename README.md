@@ -4,7 +4,7 @@ This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creat
 
 **NOTE:** Only Photoshop CC, Bridge CC, Lightroom 5, and the Creative Cloud manager have been extensively tested. The newest Lightroom CC app is not supported right now. File syncing currently [does not work](https://github.com/corbindavenport/creative-cloud-linux/issues/29).
 
-![Photoshop CC Screenshot](https://i.imgur.com/0JUQYuR.png)
+![Photoshop CC Screenshot](https://i.imgur.com/HtXe9WK.png)
 
 A (free) Adobe ID is required. Most Adobe applications require [a paid subscription](https://www.adobe.com/creativecloud/plans.html).
 
