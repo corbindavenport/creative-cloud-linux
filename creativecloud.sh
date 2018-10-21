@@ -42,6 +42,7 @@ POL_Download_Resource  "https://raw.githubusercontent.com/Winetricks/winetricks/
 POL_SetupWindow_wait "Please wait while winetricks is installed... (this might take a few minutes)" "$TITLE"
 chmod +x winetricks 
 ./winetricks atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6 gdiplus
+Set_OS "win7"
 
 # Get the installer
 cd "$POL_System_TmpDir"
