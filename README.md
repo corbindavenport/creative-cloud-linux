@@ -1,8 +1,10 @@
 # Creative Cloud for PlayOnLinux
 
+**This script currently does not work, see [issue #52](https://github.com/corbindavenport/creative-cloud-linux/issues/52) for more details.**
+
 This is an install script for [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html), designed to be used with [PlayOnLinux](https://www.playonlinux.com). The script sets up the Adobe Creative Cloud desktop program, which can be used to install and update Photoshop, Lightroom, Dreamweaver, Illustrator, and other apps.
 
-**NOTE:** Only Photoshop CC, Bridge CC, Lightroom 5, and the Creative Cloud manager have been extensively tested. The newest Lightroom CC app is not supported right now. File syncing currently [does not work](https://github.com/corbindavenport/creative-cloud-linux/issues/29).
+Only Photoshop CC, Bridge CC, Lightroom 5, and the Creative Cloud manager have been extensively tested. The newest Lightroom CC app is not supported right now. File syncing currently [does not work](https://github.com/corbindavenport/creative-cloud-linux/issues/29).
 
 ![Photoshop CC Screenshot](https://i.imgur.com/HtXe9WK.png)
 
