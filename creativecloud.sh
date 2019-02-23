@@ -14,9 +14,9 @@ source "$PLAYONLINUX/lib/sources"
 PREFIX="CreativeCloudDev"
 WINEVERSION="4.2"
 TITLE="Adobe Creative Cloud"
-EDITOR="Corbin Davenport"
+EDITOR="Adobe Systems Inc."
 GAME_URL="http://www.adobe.com"
-AUTHOR="Adobe Systems Inc."
+AUTHOR="Corbin Davenport"
 
 #Initialization
 POL_SetupWindow_Init
@@ -38,7 +38,7 @@ cd "$POL_System_TmpDir"
 POL_Download_Resource  "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
 POL_SetupWindow_wait "Please wait while the required dependencies are installed. This will take a while. Make sure to accept any installers that may pop up." "$TITLE"
 chmod +x winetricks 
-./winetricks msxml3 atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 msxml3 msxml6 gdiplus crypt32
+./winetricks msxml3 atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 msxml3 msxml6 gdiplus crypt32 gecko
 POL_Wine_OverrideDLL "builtin" "crypt32"
 ./winetricks win10
 
