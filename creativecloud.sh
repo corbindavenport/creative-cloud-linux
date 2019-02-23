@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
-# Date : (02-15-2018)
+# Date : (02-22-2019)
 # Distribution used to test : Fedora 29 x64
 # Author : Corbin Davenport
 # Licence : GPLv3
-# PlayOnLinux: 4.2.12
+# PlayOnLinux: 4.3.4
 
 # Based on RoninDusette's script
 # from https://www.playonlinux.com/en/app-2316-Adobe_Photoshop_CS6.html
@@ -11,7 +11,7 @@
 [ "$PLAYONLINUX" = "" ] && exit 0
 source "$PLAYONLINUX/lib/sources"
 
-PREFIX="CreativeCloud2018"
+PREFIX="CreativeCloudDev"
 WINEVERSION="4.2"
 TITLE="Adobe Creative Cloud"
 EDITOR="Corbin Davenport"
