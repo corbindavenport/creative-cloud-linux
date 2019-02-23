@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Date : (02-15-2018)
-# Distribution used to test : Ubuntu 17.10 x64
+# Distribution used to test : Fedora 29 x64
 # Author : Corbin Davenport
 # Licence : GPLv3
 # PlayOnLinux: 4.2.12
@@ -12,11 +12,11 @@
 source "$PLAYONLINUX/lib/sources"
 
 PREFIX="CreativeCloud2018"
-WINEVERSION="2.20-staging"
+WINEVERSION="4.2"
 TITLE="Adobe Creative Cloud"
-EDITOR="Adobe Systems Inc."
+EDITOR="Corbin Davenport"
 GAME_URL="http://www.adobe.com"
-AUTHOR="Corbin Davenport"
+AUTHOR="Adobe Systems Inc."
 
 #Initialization
 POL_SetupWindow_Init
@@ -34,22 +34,20 @@ POL_System_TmpCreate "CreativeCloud"
 Set_OS "win7"
 
 # Install dependencies
-POL_SetupWindow_wait "Please wait while msxml3 is installed..." "$TITLE"
-POL_Call POL_Install_msxml3
 cd "$POL_System_TmpDir"
-# Use winetricks, since the POL_corefonts version does not work with the installer
 POL_Download_Resource  "https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
-POL_SetupWindow_wait "Please wait while winetricks is installed... (this might take a few minutes)" "$TITLE"
+POL_SetupWindow_wait "Please wait while the required dependencies are installed. This will take a while. Make sure to accept any installers that may pop up." "$TITLE"
 chmod +x winetricks 
-./winetricks atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 atmlib msxml3 msxml6 gdiplus
-Set_OS "win7"
+./winetricks msxml3 atmlib corefonts fontsmooth=rgb gdiplus vcrun2008 vcrun2010 vcrun2012 vcrun2013 vcrun2015 msxml3 msxml6 gdiplus crypt32
+POL_Wine_OverrideDLL "builtin" "crypt32"
+./winetricks win10
 
 # Get the installer
 cd "$POL_System_TmpDir"
-POL_Download "http://ccmdl.adobe.com/AdobeProducts/KCCC/1/win32/ACCCx4_5_0_331.zip"
+POL_Download "https://ccmdls.adobe.com/AdobeProducts/KCCC/1/win32/CreativeCloudSet-Up.exe"
 POL_SetupWindow_wait "Please wait while the installer is extracted..." "$TITLE"
 unzip *.zip
-INSTALLER="$POL_System_TmpDir/Set-up.exe"
+INSTALLER="$POL_System_TmpDir/CreativeCloudSet-Up.exe"
   
 # Run the installer
 POL_Wine_WaitBefore "$TITLE"
@@ -58,7 +56,7 @@ POL_Shortcut "Creative Cloud.exe" "Adobe Creative Cloud"
 POL_System_TmpDelete
 
 # All done
-POL_SetupWindow_message "$(eval_gettext 'The installation is now complete, you can now use the Adobe Creative Cloud manager to download the applications you need.\n\nNOTE: The Creative Cloud manager takes a while to log in, and you may see an error meessage. That is completely normal - don't close the login window!\n\nAfter you download an app, you can add a PlayOnLinux shortcut for it by clicking ADOBE CREATIVE CLOUD in the app list, clicking CONFIGURE, and clicking MAKE A NEW SHORTCUT FROM THIS VIRTUAL DRIVE. Then look for the app, like Photoshop.exe, and add it.')" "$TITLE"
+#POL_SetupWindow_message "$(eval_gettext 'The installation is now complete, you can now use the Adobe Creative Cloud manager to download the applications you need.\n\nNOTE: The Creative Cloud manager takes a while to log in, and you may see an error meessage. That is completely normal - don't close the login window!\n\nAfter you download an app, you can add a PlayOnLinux shortcut for it by clicking ADOBE CREATIVE CLOUD in the app list, clicking CONFIGURE, and clicking MAKE A NEW SHORTCUT FROM THIS VIRTUAL DRIVE. Then look for the app, like Photoshop.exe, and add it.')" "$TITLE"
  
 POL_SetupWindow_Close
 exit 0
