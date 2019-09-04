@@ -4,6 +4,8 @@
 
 # WINBIND ALSO NEEDS TO BE INSTALLED
 # Other stuff: https://bugs.winehq.org/show_bug.cgi?id=47015 https://forum.winehq.org/viewtopic.php?f=8&t=32465
+#sudo setcap cap_net_raw+epi "$(readlink -f "/usr/bin/wineserver")"
+#find / -name wineserver64  2>&1 | grep -v "Permission denied" | grep -v "Invalid"
 
 # 'gecko' argument can be added to use Wine Gecko instead of IE8
 
