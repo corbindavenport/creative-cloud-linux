@@ -12,7 +12,7 @@
 PREFIX="$HOME/CreativeCloud"
 WINETRICKS="msxml3 atmlib corefonts fontsmooth=rgb gdiplus"
 WINETRICKS_DOWNLOAD="https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks"
-ADOBE_DOWNLOAD="https://prod-rel-ffc-ccm.oobesaas.adobe.com/adobe-ffc-external/core/v1/wam/download?sapCode=KCCC&productName=Creative%20Cloud&os=win"
+ADOBE_DOWNLOAD="http://ccmdl.adobe.com/AdobeProducts/KCCC/CCD/4_9/win32/ACCCx4_9_0_504.zip"
 GECKO_32_DOWNLOAD="http://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86.msi"
 GECKO_64_DOWNLOAD="http://dl.winehq.org/wine/wine-gecko/2.47/wine_gecko-2.47-x86_64.msi"
 
@@ -65,12 +65,17 @@ else
     WINEPREFIX=$PREFIX winecfg
 fi
 
+# Download and unzip Adobe installer
+mkdir "$PREFIX/install"
+echo "[ OK ] Downloading installer for Adobe Creative Cloud..."
+curl -Lfk --progress-bar -o "$PREFIX/install/install.zip" "$ADOBE_DOWNLOAD" || { echo "[EROR] Download failed."; exit; }
+echo "[ OK ] Unzipping installer..."
+unzip "$PREFIX/install/install.zip" -d $PREFIX/install
+
 # Set OS version to Windows 7
 echo "[ OK] Setting OS version to Windows 7..."
 WINEPREFIX=$PREFIX ./winetricks win7 --unattended
 
-# Download and run Adobe installer
-echo "[ OK ] Downloading installer for Adobe Creative Cloud..."
-curl -Lfk --progress-bar -o "$PREFIX/install.exe" "$ADOBE_DOWNLOAD" || { echo "[EROR] Download failed."; exit; }
+# Run the installer
 echo "[ OK ] Running installer..."
-WINEPREFIX=$PREFIX WINEDEBUG=warn wine $PREFIX/install.exe
+WINEPREFIX=$PREFIX WINEDEBUG=warn wine $PREFIX/install/Set-up.exe
